@@ -2,11 +2,11 @@ import React from 'react';
 
 const RhinoItem = ({ rhino }) => {
   return (
-    <div>
-      <div>{rhino.id}</div>
-      <div>{rhino.name}</div>
-      <div>{rhino.species}</div>
-    </div>
+    <ul>
+      <li>{rhino.id}</li>
+      <li>{rhino.name}</li>
+      <li>{rhino.species}</li>
+    </ul>
   );
 };
 

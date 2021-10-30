@@ -1,11 +1,10 @@
 import React from 'react';
-import AddRhino from './components/AddRhino';
 import RhinoList from './components/RhinoList';
 
 function App() {
   return (
     <div className='main-content'>
-      <AddRhino />
+      <h1>Rhino API</h1>
       <RhinoList />
     </div>
   );

@@ -165,8 +165,9 @@ exports.validateNameSpecies = (data) => {
     }
   }
   if (
-    typeof data.name !== 'string' &&
-    (data.name.length < 1 || data.name.length > 20)
+    typeof data.name !== 'string' ||
+    data.name.length < 1 ||
+    data.name.length > 20
   ) {
     return {
       status: 400,

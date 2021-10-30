@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@koa/cors": "^3.1.0",
     "nodemon": "^2.0.14"
   }
 }

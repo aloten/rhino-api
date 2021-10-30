@@ -1,29 +1,74 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
-const AddRhino = () => {
+const AddRhino = ({ getRhinos, setError }) => {
+  const [rhino, setRhino] = useState({
+    name: '',
+    species: '',
+  });
+
+  const onChange = (e) => {
+    setRhino({ ...rhino, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const body = rhino;
+      const res = await fetch('http://localhost:5000/rhinoceros', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (data.status === 400) {
+        setError(data.msg);
+        console.log(data.msg);
+      }
+      setRhino({
+        name: '',
+        species: '',
+      });
+      getRhinos();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Fragment>
-      <h1>Rhino API</h1>
-      <form className='rhino-form'>
+      <form className='rhino-form' onSubmit={onSubmit}>
         <span className='form-group'>
-          <label htmlFor='name'>Name</label>
-          <input id='name' type='text' className='form-input' />
+          <input
+            id='name'
+            type='text'
+            name='name'
+            placeholder='Enter a name'
+            className='form-input'
+            value={rhino.name}
+            onChange={onChange}
+            required
+          />
         </span>
         <span className='form-group'>
-          <label htmlFor='species'>Species</label>
           <select
             name='species'
             id='species'
             className='select-species form-input'
+            value={rhino.species}
+            onChange={onChange}
+            required
           >
-            <option value=''>Sumatran Rhinoceros</option>
-            <option value=''>Javan Rhinoceros</option>
-            <option value=''>Indian Rhinoceros</option>
-            <option value=''>Black Rhinoceros</option>
-            <option value=''>White Rhinoceros</option>
+            <option value='' disabled>
+              Select a species
+            </option>
+            <option value='sumatran_rhinoceros'>Sumatran Rhinoceros</option>
+            <option value='javan_rhinoceros'>Javan Rhinoceros</option>
+            <option value='indian_rhinoceros'>Indian Rhinoceros</option>
+            <option value='black_rhinoceros'>Black Rhinoceros</option>
+            <option value='white_rhinoceros'>White Rhinoceros</option>
           </select>
         </span>
-        <button className='add-btn'>Add</button>
+        <input className='btn btn-success' type='submit' value='Add' />
       </form>
     </Fragment>
   );

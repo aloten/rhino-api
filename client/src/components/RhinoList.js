@@ -28,12 +28,20 @@ const RhinoList = () => {
         method: 'DELETE',
       });
       const data = await res.json();
-      console.log(data);
       setRhinos(rhinos.filter((rhino) => rhino.id !== id));
     } catch (err) {
       console.log(err);
     }
   };
+
+  function convertSpecies(rawStr) {
+    const regex = /(\w+)_/;
+    const match = regex.exec(rawStr);
+    const result =
+      match[1].slice(0, 1).toUpperCase() + match[1].slice(1) + ' Rhinoceros';
+    return result;
+  }
+
   return (
     <Fragment>
       <Error msg={error} />
@@ -52,7 +60,7 @@ const RhinoList = () => {
             rhinos.map((rhino) => (
               <tr key={rhino.id}>
                 <td>{rhino.name}</td>
-                <td>{rhino.species}</td>
+                <td>{convertSpecies(rhino.species)}</td>
                 <td>
                   <EditRhino
                     oldRhino={rhino}

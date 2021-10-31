@@ -2,7 +2,7 @@ const Koa = require('koa'),
   app = new Koa(),
   bodyParser = require('koa-bodyparser'),
   router = require('./router'),
-  cors = require('@koa/cors'),
+  // cors = require('@koa/cors'),
   serve = require('koa-static'),
   path = require('path');
 
@@ -12,7 +12,7 @@ app.proxy = true;
 
 // middleware
 app.use(bodyParser());
-app.use(cors());
+// app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(serve(path.join(__dirname, 'client/build')));

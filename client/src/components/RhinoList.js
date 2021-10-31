@@ -10,7 +10,7 @@ const RhinoList = () => {
 
   const getRhinos = async () => {
     try {
-      const res = await fetch('http://localhost:5000/rhinoceros');
+      const res = await fetch('/rhinoceros');
       const data = await res.json();
       setRhinos(data.targetRhinos);
     } catch (err) {
@@ -24,7 +24,7 @@ const RhinoList = () => {
 
   const onDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/rhinoceros/${id}`, {
+      const res = await fetch(`/rhinoceros/${id}`, {
         method: 'DELETE',
       });
       const data = await res.json();

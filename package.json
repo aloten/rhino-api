@@ -1,18 +1,24 @@
 {
-  "name": "clyde-code-challenge",
+  "name": "rhino-challenge",
   "version": "1.0.0",
   "description": "Code challenge for Clyde Engineering interviews",
   "main": "server.js",
+  "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
+  },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
     "pg": "^8.7.1",
     "uuid": "^3.3.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
     "dev": "nodemon server.js"
   },
   "author": "",

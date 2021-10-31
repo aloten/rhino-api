@@ -21,14 +21,11 @@ const EditRhino = ({ oldRhino, getRhinos, setError }) => {
     e.preventDefault();
     try {
       const body = rhino;
-      const res = await fetch(
-        `http://localhost:5000/rhinoceros/${oldRhino.id}`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        }
-      );
+      const res = await fetch(`/rhinoceros/${oldRhino.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
       const data = await res.json();
       if (data.status === 400) {
         setError(data.msg);

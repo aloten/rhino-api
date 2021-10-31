@@ -14,7 +14,7 @@ const AddRhino = ({ getRhinos, setError }) => {
     e.preventDefault();
     try {
       const body = rhino;
-      const res = await fetch('http://localhost:5000/rhinoceros', {
+      const res = await fetch('/rhinoceros', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

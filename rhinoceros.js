@@ -1,5 +1,4 @@
 const uuidv4 = require('uuid/v4');
-// let rhinoceroses = require('./data');
 const pool = require('./db');
 
 const validSpecies = [

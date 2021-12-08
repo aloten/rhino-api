@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
-const model = require('./rhinoceros');
+const model = require('./rhinoceros.js');
 
 // Get all rhinoceros
 router.get('/rhinoceros', async (ctx, next) => {

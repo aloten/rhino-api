@@ -119,7 +119,7 @@ exports.updateRhinoceros = async (data) => {
       `UPDATE rhinoceroses SET ${queryVar} WHERE id = '${data.id}' RETURNING *`
     );
 
-    updatedRhino = query.rows[0];
+    const updatedRhino = query.rows[0];
 
     return { status: 200, updatedRhino };
   } catch (err) {
@@ -141,15 +141,6 @@ exports.deleteRhinoceros = async (id) => {
     }
   } catch (err) {
     console.log(err);
-  }
-
-  let targetRhino;
-  for (let i = 0; i < rhinoceroses.length; i++) {
-    if (rhinoceroses[i].id === id) {
-      targetRhino = rhinoceroses[i];
-      rhinoceroses.splice(i, 1);
-      break;
-    }
   }
 };
 
